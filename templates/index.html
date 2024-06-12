@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Finanças</title>
+
+    <!-- Arquivo de estilização  -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+
+    <!-- Biblioteca javascript -->
+    <script src="{{ url_for('static', filename='js/cru.js') }}"></script>
+
+</head>
+<body>
+    <header>
+        <h1>
+            Minhas Finanças
+        </h1>
+        <nav>
+            <ul>
+<!--            --><li><a>Link1</a></li><!-- 
+                --><li><a>Link2</a></li><!-- 
+                --><li><a>Link3</a></li><!-- 
+                --><li><a>Link4</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+
+
+    <div c-container="{{ url_for('transaction.cadastrar_transacao') }}"></div>
+
+
+    <div></div>
+
+
+    </main>
+</body>
+</html>
