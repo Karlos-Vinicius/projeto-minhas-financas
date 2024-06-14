@@ -1,0 +1,17 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Categoria</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Momento</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for transaction in transactions %}
+
+            {% extends "transaction.html" %}
+
+        {% end for %}
+    </tbody>
+  </table>
