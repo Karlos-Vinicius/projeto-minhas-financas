@@ -5,36 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minhas finanças</title>
 
-    <!-- Bootstrap CSS 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
-
-    <!-- Importando o meu estilo -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> 
+    
+    <!-- Importando o meu estilo 
     <link rel="stylesheet" href="styles/style.css">
+
+     Importando o estilo da transação 
+     <link rel="stylesheet" href="styles/transacao.css">
+    -->
 
 </head>
 <body>
-    <!-- Importando o bootstrap JS 
+    <!-- Importando o bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    -->
 
     <header>
-        <h1>
-            Minhas Finanças
-        </h1>
-        <nav class="conteiner">
-            <a class="item">Cadastrar transação</a>
-            <a class="item">Cadastrar categoria</a>
-            <a class="item">Tabela</a>
-        </nav>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Navbar</a>
+
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+
+
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Transação</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Categoria</a>
+                  </li>
+
+
+                </ul>
+              </div>
+            </div>
+          </nav>
     </header>
-    <main>
-        <section class="conteudo">
+    <main class="container">
+        <form>
 
- 
-        </section>
+
+            <div class="mb-3">
+              <label for="ivalor" class="form-label">Valor</label>
+              <input type="number" class="form-control" id="ivalor" name="valor" aria-describedby="emailHelp">
+              <div id="emailHelp" class="form-text">Digite o valor da transação</div>
+            </div>
+
+            <div class="mb-3">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Selecione uma categoria</option>
+                    <option value="1">Mesada</option>
+                    <option value="2">Café da manhã</option>
+                    <option value="3">Conta de luz</option>
+                  </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="idescricao" class="form-label">Uma pequena descrição</label>
+                <textarea class="form-control" name="descricao" id="idescricao" rows="3"></textarea>
+              </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
     </main>
-    <footer>
-
-    </footer>
 </body>
 </html>
