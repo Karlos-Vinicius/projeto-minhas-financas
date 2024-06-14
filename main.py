@@ -4,7 +4,7 @@ from routes.transactions import transaction
 
 
 app = Flask(__name__)
-app.register_blueprint(home, url_prefix="/")
+app.register_blueprint(home)
 app.register_blueprint(transaction, url_prefix="/transaction")
 
 

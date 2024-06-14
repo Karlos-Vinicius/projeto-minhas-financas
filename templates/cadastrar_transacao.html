@@ -1,7 +1,25 @@
 <form action="{{ url_for('transaction.cadastrar_transacao')}}" method="post">
-    <label for="idescricao"></label>
-    <input type="text" placeholder="Descreva a transação" name="descricao" id="idescricao">
 
-    <label for="ivalor"></label>
-    <input type="number" name="valor" id="ivalor">
+    <div class="mb-3">
+        <label for="ivalor" class="form-label">Valor</label>
+        <input type="number" class="form-control" id="ivalor" name="valor" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">Digite o valor da transação</div>
+    </div>
+
+    <div class="mb-3">
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Selecione uma categoria</option>
+            <option value="1">Mesada</option>
+            <option value="2">Café da manhã</option>
+            <option value="3">Conta de luz</option>
+            </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="idescricao" class="form-label">Uma pequena descrição</label>
+        <textarea class="form-control" name="descricao" id="idescricao" rows="3"></textarea>
+        </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
