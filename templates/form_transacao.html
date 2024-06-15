@@ -16,7 +16,7 @@ method="post">
 
             {% for categoria in categorias %}
 
-                {% include "categoria.html" %}
+                <option value="{{ categoria['categoria'] }}">{{ categoria['categoria'] }}</option>
 
             {% endfor %}
 

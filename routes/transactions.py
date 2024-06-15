@@ -24,20 +24,18 @@ def cadastrar_transacao():
     poderar visualizar os dads de suas transações.
     """
     if request.method == "GET":
-        return render_template("cadastrar_transacao.html", categorias=CATEGORIAS)
+        return render_template("form_transacao.html", categorias=CATEGORIAS)
 
     transacao = request.json
 
     if not (transacao["valor"] and transacao["categoria"]): 
         # Conferindo os campos em que o preenchimento é obrigatório
         print("Muito errado errado: ", transacao)
-        return render_template("cadastrar_transacao.html", categorias=CATEGORIAS)
+        return redirect(url_for("transaction.cadastrar_transacao"))
     
     if not in_categoria(categoria=transacao["categoria"], categorias=CATEGORIAS):
         # Se a categoria não estiver no banco de dados
-        print(transacao["categoria"])
-        print("Aqui deu errado: ", transacao)
-        return render_template("cadastrar_transacao.html", categorias=CATEGORIAS)
+        return redirect(url_for("transaction.cadastrar_transacao"))
     
     time = datetime.now().strftime("%d/%m/%Y %H:%M")
     
@@ -57,7 +55,7 @@ def cadastrar_categoria():
         uma nova transação.
     """
     if request.method == "GET":
-        return render_template("cadastrar_categoria.html", categorias=CATEGORIAS)
+        return render_template("form_categoria.html", categorias=CATEGORIAS)
     
     categoria: str = request.json["categoria"].strip().capitalize()
 
@@ -77,4 +75,4 @@ def cadastrar_categoria():
 
     CATEGORIAS.append(c)
     
-    return redirect(url_for("transaction.cadastrar_transacao"))
+    return render_template("tr_categoria.html", categoria=c)
