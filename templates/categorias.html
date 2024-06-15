@@ -1,0 +1,84 @@
+<div class="mb-3">
+
+    <!-- Modal -->
+<div class="modal fade" id="swap" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Realmente deseja atualizar uma categoria?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Caso você altere uma categoria, todas as transações que tinha essa categoria vão ser alterados também.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-warning">Alterar Categoria</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+    <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Realmente deseja deletar uma categoria?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Se a categoria for deletada todas as transações que tinham ela vão ser deletadas também.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-danger">Deletar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Categoria</th>
+                <th>Mudanças</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for categoria in categorias %}
+    
+                <tr>
+                    <th>{{ categoria["id"] }}</th>
+                    <td>{{ categoria["categoria"] }}</td>
+                    <td>
+    
+                        <button 
+                        type="button" 
+                        class="btn btn-warning"
+                        data-bs-toggle="tooltip" 
+                        data-bs-placement="bottom" 
+                        title="Se você alterar a categoria todas as transações seram alteradas também.">
+                            Modificar
+                        </button>
+    
+                        <button 
+                        type="button" 
+                        class="btn btn-danger"
+                        data-bs-toggle="tooltip" 
+                        data-bs-placement="bottom" 
+                        title="Se você deletar uma categoria todas as transações que tivereme essa categoria seram deletadas também.">
+                            Deletar
+                        </button>
+    
+                    </td>
+                </tr>
+    
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

@@ -38,3 +38,20 @@ def cadastrar_categoria():
     CATEGORIAS.append(c)
     
     return redirect(url_for("transaction.cadastrar_transacao"))
+
+
+@categoria.route("/categorias")
+def categorias():
+    return render_template("categorias.html", categorias=CATEGORIAS)
+
+
+
+@categoria.route("/<int:categoria_id>/modificar")
+def modificar_categoria(categoria_id):
+    ...
+
+
+@categoria.route("/<int:categoria_id>/deletar")
+def deletar_categoria(categoria_id):
+    ...
+

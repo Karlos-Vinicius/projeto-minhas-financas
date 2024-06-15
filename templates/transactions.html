@@ -10,8 +10,21 @@
     <tbody>
         {% for transaction in transactions %}
 
-            {% include "transaction.html" %}
-
+            <tr>
+                <td>
+                    {{ transaction["categoria"] }}
+                </td>
+                <td>
+                    {{ transaction["descricao"] }}
+                </td>
+                <td>
+                    {{ transaction["valor"] }}
+                </td>
+                <td>
+                    {{ transaction["momento"] }}
+                </td>
+            </tr>
+        
         {% endfor %}
     </tbody>
 </table>
