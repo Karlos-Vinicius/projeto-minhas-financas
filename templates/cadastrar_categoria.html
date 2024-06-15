@@ -1,10 +1,14 @@
-<form>
-
+<form
+class="c-form"
+c-target="#main"
+action="{{ url_for('transaction.cadastrar_categoria')}}" 
+method="post">
+    
     <div class="mb-3">
-      <label for="icategoria" class="form-label">Categoria</label>
-      <input type="text" class="form-control" id="icategoria" name="categoria" aria-describedby="dica">
-      <div id="dica" class="form-text">A categoria deve ser simples e objetiva</div>
+        <label for="icategoria" class="form-label">Categoria</label>
+        <input type="text" class="form-control" id="icategoria" name="categoria" aria-describedby="dica">
+    <div id="dica" class="form-text">A categoria deve ser simples e objetiva</div>
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+</form>

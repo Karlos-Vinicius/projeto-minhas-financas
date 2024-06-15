@@ -1,4 +1,8 @@
-<form action="{{ url_for('transaction.cadastrar_transacao')}}" method="post">
+<form 
+class="c-form"
+c-target="#main"
+action="{{ url_for('transaction.cadastrar_transacao')}}" 
+method="post">
 
     <div class="mb-3">
         <label for="ivalor" class="form-label">Valor</label>
@@ -9,10 +13,14 @@
     <div class="mb-3">
         <select class="form-select" aria-label="Default select example">
             <option selected>Selecione uma categoria</option>
-            <option value="1">Mesada</option>
-            <option value="2">Café da manhã</option>
-            <option value="3">Conta de luz</option>
-            </select>
+
+            {% for categoria in categorias %}
+
+                {% include "categoria.html" %}
+
+            {% endfor %}
+
+        </select>
     </div>
 
     <div class="mb-3">
