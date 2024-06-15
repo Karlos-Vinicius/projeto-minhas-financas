@@ -6,12 +6,12 @@ method="post">
 
     <div class="mb-3">
         <label for="ivalor" class="form-label">Valor</label>
-        <input type="number" class="form-control" id="ivalor" name="valor" aria-describedby="emailHelp">
+        <input type="number" class="form-control" id="ivalor" name="valor" aria-describedby="emailHelp" required>
         <div id="emailHelp" class="form-text">Digite o valor da transação</div>
     </div>
 
     <div class="mb-3">
-        <select class="form-select" aria-label="Default select example">
+        <select class="form-select" aria-label="Default select example" name="categoria" required>
             <option selected>Selecione uma categoria</option>
 
             {% for categoria in categorias %}
