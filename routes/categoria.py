@@ -2,7 +2,9 @@ from flask import Blueprint, render_template, redirect, request, url_for
 
 
 from db.categoria import CATEGORIAS
+from db.transacao import TRANSACTIONS
 from functions.func import in_categoria
+from functions.func import find_categoria
 
 
 categoria = Blueprint("categoria", __name__)
@@ -45,13 +47,35 @@ def categorias():
     return render_template("categorias.html", categorias=CATEGORIAS)
 
 
+@categoria.route("/<int:categoria_id>/modify", methods=['PUT'])
+def modify(categoria_id):
+    """
+        Altera uma categoria.
+        Essa alteração altera também as transações, ou seja,
+        todas as transações que tinha essa categoria vão mudar para a 
+        nova categoria.
+    """
 
-@categoria.route("/<int:categoria_id>/modificar")
-def modificar_categoria(categoria_id):
-    ...
+    # Verificando se a categoria existe
+    c = find_categoria(categoria_id)
+    if not len(c):
+        return render_template("categorias.html", categorias=CATEGORIAS)
+    
+    c = c[0]
+
+    
 
 
-@categoria.route("/<int:categoria_id>/deletar")
-def deletar_categoria(categoria_id):
-    ...
+    return render_template("form_categoria.html", categorias=CATEGORIAS)
+
+
+@categoria.route("/<int:categoria_id>/delete", methods=['DELETE'])
+def delete(categoria_id):
+    """ 
+        Deleta uma categoria.
+        Caso você delete uma categoria, todas as transações
+        que tinha essa categoria vão ser deletadas também.
+    """
+    print(categoria_id)
+    return render_template("form_categoria.html", categorias=CATEGORIAS)
 

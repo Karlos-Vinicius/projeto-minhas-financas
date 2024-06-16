@@ -62,7 +62,9 @@
                         class="btn btn-warning"
                         data-bs-toggle="tooltip" 
                         data-bs-placement="bottom" 
-                        title="Se você alterar a categoria todas as transações seram alteradas também.">
+                        title="Se você alterar a categoria todas as transações seram alteradas também."
+                        c-put="{{ url_for('categoria.modify', categoria_id=categoria['id']) }}"
+                        c-target="#main">
                             Modificar
                         </button>
     
@@ -71,7 +73,9 @@
                         class="btn btn-danger"
                         data-bs-toggle="tooltip" 
                         data-bs-placement="bottom" 
-                        title="Se você deletar uma categoria todas as transações que tivereme essa categoria seram deletadas também.">
+                        title="Se você deletar uma categoria todas as transações que tivereme essa categoria seram deletadas também."
+                        c-delete="{{ url_for('categoria.delete', categoria_id=categoria['id']) }}"
+                        c-target="#main">
                             Deletar
                         </button>
     
