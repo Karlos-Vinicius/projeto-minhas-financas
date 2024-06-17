@@ -3,8 +3,7 @@ from flask import Blueprint, render_template, redirect, request, url_for
 
 from db.categoria import CATEGORIAS
 from db.transacao import TRANSACTIONS
-from functions.func import in_categoria
-from functions.func import find_categoria
+from functions.func import in_categoria, find_categoria, delete_transaction_by_categoria, alter_category_in_transactions, alter_category_in_category
 
 
 categoria = Blueprint("categoria", __name__)
@@ -47,7 +46,7 @@ def categorias():
     return render_template("categorias.html", categorias=CATEGORIAS)
 
 
-@categoria.route("/<int:categoria_id>/modify", methods=['PUT'])
+@categoria.route("/<int:categoria_id>/modify", methods=['GET', 'PUT'])
 def modify(categoria_id):
     """
         Altera uma categoria.
@@ -56,17 +55,28 @@ def modify(categoria_id):
         nova categoria.
     """
 
+    if request.method == "GET":
+        return render_template("alter_categoria.html", categoria=find_categoria(categoria_id), categoria_id=categoria_id)
+
     # Verificando se a categoria existe
     c = find_categoria(categoria_id)
     if not len(c):
         return render_template("categorias.html", categorias=CATEGORIAS)
     
     c = c[0]
-
     
+    new_categoria = request.json
+    if not new_categoria:
+        return render_template("form_categoria.html", categorias=CATEGORIAS)
+    
+    new_categoria = new_categoria["categoria"]
 
 
-    return render_template("form_categoria.html", categorias=CATEGORIAS)
+    alter_category_in_transactions(TRANSACTIONS, c, new_categoria)
+    alter_category_in_category(CATEGORIAS, c, new_categoria)
+
+
+    return render_template("categorias.html", categorias=CATEGORIAS)
 
 
 @categoria.route("/<int:categoria_id>/delete", methods=['DELETE'])
@@ -76,6 +86,12 @@ def delete(categoria_id):
         Caso você delete uma categoria, todas as transações
         que tinha essa categoria vão ser deletadas também.
     """
-    print(categoria_id)
-    return render_template("form_categoria.html", categorias=CATEGORIAS)
+    c = find_categoria(categoria_id)
+    if not len(c):
+        return render_template("categorias.html", categorias=CATEGORIAS)
+        
+    c = c[0]
 
+    delete_transaction_by_categoria(TRANSACTIONS, c)
+
+    return render_template("form_categoria.html", categorias=CATEGORIAS)

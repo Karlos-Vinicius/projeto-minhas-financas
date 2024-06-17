@@ -1,0 +1,21 @@
+<form
+class="c-form"
+method="put"
+c-target="#main"
+action="{{ url_for('categoria.modify', categoria_id=categoria_id) }}" >
+    
+    <div class="mb-3">
+        <label for="icategoria" class="form-label">Categoria</label>
+        <input 
+        type="text" 
+        class="form-control" 
+        id="icategoria" 
+        name="categoria" 
+        aria-describedby="dica"
+        value="{{ categoria[0] }}" 
+        required>
+    <div id="dica" class="form-text">A categoria deve ser simples e objetiva</div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Alterar</button>
+</form>
