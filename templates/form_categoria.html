@@ -1,12 +1,19 @@
 <form
 class="c-form"
 c-target="#main"
-action="{{ url_for('categoria.cadastrar_categoria')}}" 
-method="post">
+action="{% if categoria %}{{ url_for('categoria.modify', categoria_id=categoria_id) }}{% else %}{{ url_for('categoria.cadastrar_categoria')}}{% endif %}" 
+method="{% if categoria %}put{% else %}post{% endif %}">
     
     <div class="mb-3">
         <label for="icategoria" class="form-label">Categoria</label>
-        <input type="text" class="form-control" id="icategoria" name="categoria" aria-describedby="dica" required>
+        <input 
+        type="text" 
+        class="form-control" 
+        id="icategoria" 
+        name="categoria" 
+        aria-describedby="dica" 
+        {% if categoria %}value="{{ categoria }}"{% endif %}
+        required>
     <div id="dica" class="form-text">A categoria deve ser simples e objetiva</div>
     </div>
 

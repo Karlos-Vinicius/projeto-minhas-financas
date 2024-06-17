@@ -56,11 +56,11 @@ def modify(categoria_id):
     """
 
     if request.method == "GET":
-        return render_template("alter_categoria.html", categoria=find_categoria(categoria_id), categoria_id=categoria_id)
+        return render_template("form_categoria.html", categoria=find_categoria(categoria_id)[0], categoria_id=categoria_id)
 
     # Verificando se a categoria existe
     c = find_categoria(categoria_id)
-    if not len(c):
+    if not c:
         return render_template("categorias.html", categorias=CATEGORIAS)
     
     c = c[0]
@@ -87,7 +87,7 @@ def delete(categoria_id):
         que tinha essa categoria vão ser deletadas também.
     """
     c = find_categoria(categoria_id)
-    if not len(c):
+    if not c:
         return render_template("categorias.html", categorias=CATEGORIAS)
         
     c = c[0]
