@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, redirect, request, url_for
 
 from db.categoria import CATEGORIAS
 from db.transacao import TRANSACTIONS
-from functions.func import in_categoria, find_categoria, delete_transaction_by_categoria, alter_category_in_transactions, alter_category_in_category
+from functions.func import in_categoria, find_categoria, delete_transaction_by_categoria, alter_category_in_transactions, alter_category_in_category, delete_cateogry_by_id
 
 
 categoria = Blueprint("categoria", __name__)
@@ -93,5 +93,6 @@ def delete(categoria_id):
     c = c[0]
 
     delete_transaction_by_categoria(TRANSACTIONS, c)
+    delete_cateogry_by_id(CATEGORIAS, categoria_id)
 
     return render_template("form_categoria.html", categorias=CATEGORIAS)

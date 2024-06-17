@@ -36,6 +36,22 @@ def delete_transaction_by_categoria(transactions: list[dict], categoria: str, i:
     delete_transaction_by_categoria(transactions, categoria, i)
 
 
+def delete_cateogry_by_id(categorys: list[dict], category_id: int, i: int = 0) -> None:
+    """
+        Função recursiva responsável por deletar uma categoria com base no seu id.
+        Lembre-se de usá-la depois de deletar todas as transações com essa categoria.
+    """
+    if i >= len(categorys):
+        raise
+
+    if categorys[i]["id"] == category_id:
+        del categorys[i]
+        return None
+    
+    i += 1
+
+    delete_cateogry_by_id(categorys, category_id, i)
+
 def alter_category_in_transactions(transactions: list[dict], category: str, new_category: str, i: int = 0) -> None:
     """
         Altera uma categoria de uma transação.
