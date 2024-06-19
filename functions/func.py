@@ -80,3 +80,44 @@ def alter_category_in_category(categorys: list[dict], category: str, new_categor
     i += 1
 
     alter_category_in_category(categorys, category, new_category, i)
+
+
+def find_transaction(transactions: list[dict], transaction_id: int) -> list[dict]:
+    """
+        Função responsável por econtrar a transação com o id passado para ela
+    """
+    return [transaction for transaction in transactions if transaction["id"] == transaction_id]
+
+
+def edit_transaction(transactions: list[dict], transaction_id: int, transaction: dict, indice: int = 0) -> True | False:
+    """
+        Função reponsável por editar uma transação
+    """
+    if indice >= len(transactions):
+        return False
+    
+    if transactions[indice]["id"] == transaction_id:
+        transactions[indice]["valor"] = transaction["valor"]
+        transactions[indice]["categoria"] = transaction["categoria"]
+        transactions[indice]["descricao"] = transaction["descricao"]
+        return True
+    
+    indice += 1
+
+    edit_transaction(transactions, transaction_id, transaction, indice)
+
+
+def delete_transaction(transactions: list[dict], transaction_id: int, indice: int = 0) -> True | False:
+    """
+        Função responsável por deletar uma transação com base no seu ID.
+    """
+    if indice >= len(transactions):
+        return False
+    
+    if transactions[indice]["id"] == transaction_id:
+        del transactions[indice]
+        return True
+    
+    indice += 1
+
+    delete_transaction(transactions, transaction_id, indice)

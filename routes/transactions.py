@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from datetime import datetime
-from functions.func import in_categoria
+from functions.func import in_categoria, find_transaction, edit_transaction, delete_transaction
 
 
 from db.transacao import TRANSACTIONS
@@ -44,3 +44,38 @@ def cadastrar_transacao():
     TRANSACTIONS.append(t)
 
     return redirect(url_for("transaction.index", transactions=TRANSACTIONS))
+
+
+@transaction.route("/edit_transactions")
+def edit_transactions():
+    """
+        Função responsável por retornar a tabela com a coluna Ações, por onde o usuário
+        poderá editar ou deletar uma transação
+    """
+    return render_template("edit_transactions.html", transactions=TRANSACTIONS)
+
+
+@transaction.route("/<int:transaction_id>/edit", methods=["GET", "PUT"])
+def edit(transaction_id):
+    """
+        Função responsável por enviar o formulário para editar uma transação
+        e por efetivamente editar uma transação
+    """
+    if request.method == "GET":
+        return render_template("form_transacao.html", transaction=find_transaction(TRANSACTIONS, transaction_id)[0], categorias=CATEGORIAS)
+    
+    # Edita a transação
+    edit_transaction(TRANSACTIONS, transaction_id, request.json)
+
+    return render_template("transactions.html", transactions=TRANSACTIONS)
+
+
+@transaction.route("/<int:transaction_id>/delete", methods=["DELETE"])
+def delete(transaction_id):
+    """
+        Responsável por deletar uma transação com base no seu id
+    """
+
+    delete_transaction(TRANSACTIONS, transaction_id)
+
+    return render_template("transactions.html", transactions=TRANSACTIONS)

@@ -1,22 +1,52 @@
 <form 
 class="c-form"
 c-target="#main"
-action="{{ url_for('transaction.cadastrar_transacao')}}" 
-method="post">
+{% if transaction %}
+
+    action="{{ url_for('transaction.edit', transaction_id=transaction['id']) }}"
+    method="put"
+
+{% else %}
+
+    action="{{ url_for('transaction.cadastrar_transacao')}}" 
+    method="post"
+
+{% endif %}
+>
 
     <div class="mb-3">
         <label for="ivalor" class="form-label">Valor</label>
-        <input type="number" class="form-control" id="ivalor" name="valor" aria-describedby="emailHelp" required>
+        <input 
+        type="number" 
+        class="form-control" 
+        id="ivalor" 
+        name="valor" 
+        aria-describedby="emailHelp" 
+        required
+        {% if transaction %}
+            value="{{ transaction['valor'] }}" 
+        {% endif %}
+        >
         <div id="emailHelp" class="form-text">Digite o valor da transação</div>
     </div>
 
     <div class="mb-3">
         <select class="form-select" aria-label="Default select example" name="categoria" required>
-            <option selected>Selecione uma categoria</option>
+            <option 
+            {% if not transaction %}
+                selected 
+            {% endif %}
+            disabled>Selecione uma categoria</option>
 
             {% for categoria in categorias %}
 
-                <option value="{{ categoria['categoria'] }}">{{ categoria['categoria'] }}</option>
+                
+                    <option 
+                    {% if transaction and transaction['categoria'] == categoria['categoria'] %} 
+                        selected
+                    {% endif %}
+                    value="{{ categoria['categoria'] }}"
+                    >{{ categoria['categoria'] }}</option>
 
             {% endfor %}
 
@@ -25,7 +55,11 @@ method="post">
 
     <div class="mb-3">
         <label for="idescricao" class="form-label">Uma pequena descrição</label>
-        <textarea class="form-control" name="descricao" id="idescricao" rows="3"></textarea>
+        <textarea 
+        class="form-control" 
+        name="descricao" 
+        id="idescricao" 
+        rows="3">{% if transaction %}{{ transaction["descricao"] }}{% endif %}</textarea>
         </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
