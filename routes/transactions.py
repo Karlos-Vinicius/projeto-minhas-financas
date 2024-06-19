@@ -40,6 +40,7 @@ def cadastrar_transacao():
     time = datetime.now().strftime("%d/%m/%Y %H:%M")
     
     t = {"categoria": transacao["categoria"], "descricao": transacao["descricao"], "valor": transacao["valor"], "momento": time}
+    t['id'] = TRANSACTIONS[-1]['id'] + 1 if len(TRANSACTIONS) > 0 else 1
 
     TRANSACTIONS.append(t)
 
